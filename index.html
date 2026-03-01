@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wedding Invitation - Hafiz & Umaima</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --gold: #d4af37; 
+            --maroon: #7b1113;
+            --bg-color: #f8f5eb; /* Matches the cream background of the card */
+        }
+        
+        body, html { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%; 
+            height: 100%; 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #111; /* Dark background for the card to pop against */
+            overflow: hidden; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+
+        /* The Formal Fake-Out Start Screen */
+        #start-screen {
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: var(--bg-color); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 5000; 
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .arabic { 
+            font-family: 'Amiri', serif; 
+            font-size: clamp(2rem, 8vw, 3rem); 
+            margin-bottom: 10px; 
+            color: #333;
+        }
+
+        .couple-names {
+            font-size: 1.2rem;
+            color: var(--maroon);
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .btn { 
+            background: var(--maroon); 
+            color: white; 
+            padding: 15px 50px; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border: 2px solid var(--gold); 
+            font-size: 1.2rem; 
+            transition: 0.3s; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover { 
+            transform: scale(1.05); 
+            background: var(--gold);
+            border-color: var(--maroon);
+            color: var(--maroon);
+        }
+
+        /* The Hidden Card Container */
+        #card-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease 0.3s; /* Slight delay so it fades in smoothly after screen leaves */
+        }
+
+        /* Responsive Card Image */
+        .the-card {
+            max-width: 100%;
+            max-height: 95vh; /* Prevents it from getting cut off on top/bottom */
+            width: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="start-screen">
+        <div class="arabic">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+        <div class="couple-names">The Wedding of<br>Umaima & Hafiz Muhammad Abdullah</div>
+        <button class="btn" onclick="revealJoke()">Open Invitation</button>
+    </div>
+
+    <div id="card-container">
+        <img src="funny_card.png" alt="You Are Not Invited" class="the-card">
+    </div>
+
+    <script>
+        function revealJoke() {
+            const startScreen = document.getElementById('start-screen');
+            const cardContainer = document.getElementById('card-container');
+
+            // Fade out the start screen
+            startScreen.style.opacity = '0';
+            startScreen.style.visibility = 'hidden';
+
+            // Fade in the funny card
+            cardContainer.style.visibility = 'visible';
+            cardContainer.style.opacity = '1';
+        }
+    </script>
+</body>
+</html>
